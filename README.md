@@ -1,18 +1,18 @@
-#322 Final Project
+322 Final Project
 
-##Overview
+Overview
 
 The 322 Final Project is a user-friendly application designed to streamline essential tasks such as managing a personalized list, and handling user authentication, while also providing image-related functionality. This project implements features for signing in, signing out, list management, and capturing or uploading images.
 
-##Features
+Features
 
-##User Authentication
+User Authentication
 
 Sign In: Users can securely log in to their accounts.
 
 Sign Out: Users can log out to ensure their information remains private.
 
-##List Management
+List Management
 
 Add to List: Users can add new items to a customizable list.
 
