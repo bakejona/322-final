@@ -1,63 +1,57 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Text } from "react-native";
-import { Link, Tabs } from "expo-router";
-import { Pressable } from "react-native";
-
-import Colors from "@/constants/Colors";
-import { useColorScheme } from "@/components/useColorScheme";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { View, Text } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        tabBarActiveTintColor: "blue",
+        tabBarActiveBackgroundColor: "#939fd2",
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? "light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: "Home Page",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="home" size={24} color={"#273ea5"} />
           ),
         }}
       />
       <Tabs.Screen
-        name="picture"
+        name="about"
         options={{
-          title: "Take Picture",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "About",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="information-circle" size={24} color={"#273ea5"} />
+          ),
         }}
       />
+
       <Tabs.Screen
-        name="web cam picture"
+        name="two"
         options={{
-          title: "web cam Picture",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Mailing List",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="mail" size={24} color={"#273ea5"} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="picture"
+        options={{
+          title: "Picture",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="camera" size={24} color={"#273ea5"} />
+          ),
         }}
       />
     </Tabs>

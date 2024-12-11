@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
-import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "@/components/Themed";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigation } from "expo-router";
+import { Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 export default function TabOneScreen() {
   const auth = getAuth();
@@ -12,22 +13,31 @@ export default function TabOneScreen() {
   const signUserOut = async () => {
     try {
       await signOut(auth).then(() => {
-        // when a user signs out what do we want to do
-        console.log("user signed out");
+        console.log("User signed out");
         navigation.replace("index");
       });
     } catch (error) {
-      console.log("error signing out: ", error);
+      console.log("Error signing out: ", error);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View>
-        <Text>In order to sign out press the button below.</Text>
-        <Button mode="contained" onPress={signUserOut}>
-          Sign out
+      <Text style={styles.title}>Welcome to the App!</Text>
+      <Text style={styles.description}>
+        This application allows you to manage your profile, take pictures, and
+        more.
+      </Text>
+      <View style={styles.buttonContainer}>
+        <Text style={styles.instructionText}>
+          Press the button below to sign out.
+        </Text>
+        <Button
+          mode="contained"
+          onPress={signUserOut}
+          style={styles.signOutButton}
+        >
+          Sign Out
         </Button>
       </View>
     </View>
@@ -37,16 +47,32 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    padding: width * 0.05,
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f9f9f9",
   },
   title: {
-    fontSize: 20,
+    fontSize: width * 0.07,
     fontWeight: "bold",
+    marginBottom: height * 0.02,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
+  description: {
+    fontSize: width * 0.045,
+    textAlign: "center",
+    marginBottom: height * 0.02,
+    paddingHorizontal: width * 0.1,
+  },
+  buttonContainer: {
+    marginTop: height * 0.02,
+    alignItems: "center",
+  },
+  instructionText: {
+    fontSize: width * 0.04,
+    textAlign: "center",
+    marginBottom: height * 0.01,
+  },
+  signOutButton: {
     width: "80%",
   },
 });
